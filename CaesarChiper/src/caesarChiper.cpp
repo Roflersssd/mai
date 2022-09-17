@@ -123,12 +123,11 @@ void runCaesar(std::istream &in = std::cin, std::ostream &out = std::cout) {
   out << "Enter key: ";
   int key;
   in >> key;
-
+    
   bool useIo = false;
   bool useIi = false;
-  const LocaleSettings locSettings = makeLocalSettings(language, useIo, useIi);
 
-  if (locSettings.language == Language::RU) {
+  if (toLanguage(language) == Language::RU) {
     out << "Use ¸?(y/n) ";
     char answer;
     in >> answer;
@@ -138,6 +137,7 @@ void runCaesar(std::istream &in = std::cin, std::ostream &out = std::cout) {
     in >> answer;
     useIi = answer == 'y';
   }
+  const LocaleSettings locSettings = makeLocalSettings(language, useIo, useIi);
 
   out << makeCaesar(text, key, locSettings);
 }
