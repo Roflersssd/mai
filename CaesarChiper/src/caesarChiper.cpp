@@ -10,10 +10,10 @@ const std::vector enAlphabet = {'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i',
                                 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r',
                                 's', 't', 'u', 'v', 'w', 'x', 'y', 'z'};
 
-const std::vector ruAlphabet = {'à', 'á', 'â', 'ã', 'ä', 'å', '¸', 'æ', 'ç',
-                                'è', 'é', 'ê', 'ë', 'ì', 'í', 'î', 'ï', 'ð',
-                                'ñ', 'ò', 'ó', 'ô', 'õ', 'ö', '÷', 'ø', 'ù',
-                                'ú', 'û', 'ü', 'ý', 'þ', 'ÿ'};
+const std::vector ruAlphabet = {'?', '?', '?', '?', '?', '?', '?', '?', '?',
+                                '?', '?', '?', '?', '?', '?', '?', '?', '?',
+                                '?', '?', '?', '?', '?', '?', '?', '?', '?',
+                                '?', '?', '?', '?', '?', '?'};
 
 std::string toString(Language l) {
   switch (l) {
@@ -56,12 +56,12 @@ LocaleSettings makeLocalSettings(const std::string &language, bool useIo,
     settings.alphabet = ruAlphabet;
     if (!useIi) {
       const auto iiIt = std::find(std::begin(settings.alphabet),
-                                  std::end(settings.alphabet), 'é');
+                                  std::end(settings.alphabet), '?');
       settings.alphabet.erase(iiIt);
     }
     if (!useIi) {
       const auto ioIt = std::find(std::begin(settings.alphabet),
-                                  std::end(settings.alphabet), '¸');
+                                  std::end(settings.alphabet), '?');
       settings.alphabet.erase(ioIt);
     }
   } else
@@ -128,12 +128,12 @@ void runCaesar(std::istream &in = std::cin, std::ostream &out = std::cout) {
   bool useIi = false;
 
   if (toLanguage(language) == Language::RU) {
-    out << "Use ¸?(y/n) ";
+    out << "Use ??(y/n) ";
     char answer;
     in >> answer;
     useIo = answer == 'y';
 
-    out << "Use é?(y/n) ";
+    out << "Use ??(y/n) ";
     in >> answer;
     useIi = answer == 'y';
   }
