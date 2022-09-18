@@ -29,10 +29,10 @@ std::string toString(Language l) {
 Language toLanguage(const std::string &lang) {
   if (lang == "en")
     return Language::EN;
-  else if (lang == "rus")
+  if (lang == "rus")
     return Language::RU;
-  else
-    throw std::runtime_error("Unknown locale: " + lang);
+
+  throw std::runtime_error("Unknown locale: " + lang);
 }
 
 struct LocaleSettings {
@@ -123,7 +123,7 @@ void runCaesar(std::istream &in = std::cin, std::ostream &out = std::cout) {
   out << "Enter key: ";
   int key;
   in >> key;
-    
+
   bool useIo = false;
   bool useIi = false;
 
@@ -142,4 +142,7 @@ void runCaesar(std::istream &in = std::cin, std::ostream &out = std::cout) {
   out << makeCaesar(text, key, locSettings);
 }
 
-int main() { runCaesar(); }
+int main() {
+  runCaesar();
+  return 0;
+}
